@@ -1,4 +1,4 @@
-# QS-Chernogrupo
+# QS-ChernoStation
 
 Repositório para inserir o projeto da matéria Qualidade De Software - COS482 ministrada na UFRJ, em 2019.2
 
