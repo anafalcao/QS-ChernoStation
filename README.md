@@ -11,19 +11,19 @@ Repositório para inserir o projeto da matéria Qualidade De Software - COS482 m
   </tr>
   <tr>
     <td>Ana Paula Falcao</td>
-    <td></td>
+    <td>Gerente de projetos</td>
   </tr>
   <tr>
     <td>Alexandre Paiva</td>
-    <td></td>
+    <td>Desenvolvedor Back-end</td>
   </tr>
   <tr>
     <td>Luis Fernando Lins</td>
-    <td></td>
+    <td>Desenvolvedor Front-end</td>
   </tr>
   <tr>
     <td>Pedro Wagner</td>
-    <td></td>
+    <td>Analista de requisitos</td>
   </tr>
 
 </table>
