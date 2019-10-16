@@ -1,0 +1,19 @@
+{
+  "name": "chernostation",
+  "version": "1.0.0",
+  "description": "ChernoStation is a web app for managing a nuclear power plant",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anafalcao/QS-ChernoStation.git"
+  },
+  "author": "ChernoGrupo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anafalcao/QS-ChernoStation/issues"
+  },
+  "homepage": "https://github.com/anafalcao/QS-ChernoStation#readme"
+}
