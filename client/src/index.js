@@ -8,6 +8,13 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
+import ApolloClient from 'apollo-boost';
+import { gql } from "apollo-boost";
+// or you can use `import gql from 'graphql-tag';` instead
+
+const client = new ApolloClient({
+  uri: 'http://localhost:5000/graphql',
+});
 
 ReactDOM.render(
   <LayoutProvider>
