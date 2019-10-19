@@ -112,4 +112,47 @@ export default makeStyles(theme => ({
     fontSize: "18px !important",
     marginLeft: theme.spacing(1),
   },
+  formGrid: {
+    width: "80%",
+    padding: "30px",
+    margin: "auto",
+  },
+  mainFormTable: {
+    width: "100%",
+    display: "table",
+  },
+  mainFormBody: {
+    width: "100%",
+  },
+  mainFormRow: {
+    width: "100%",
+    display: "flex",
+    alignContent: "center",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    [theme.breakpoints.only("xs")]: {
+      flexWrap: "wrap",
+    },
+  },
+  mainFormItem: {
+    display: "block",
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  input: {
+    display: 'none',
+  },
 }));

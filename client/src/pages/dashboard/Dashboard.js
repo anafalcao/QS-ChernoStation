@@ -5,6 +5,11 @@ import {
   Select,
   OutlinedInput,
   MenuItem,
+  TextField,
+  InputLabel,
+  FormControl,
+  Button,
+  Paper,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import {
@@ -47,6 +52,26 @@ export default function Dashboard(props) {
 
   // local
   var [mainChartState, setMainChartState] = useState("monthly");
+
+ // form props
+  const [values, setValues] = React.useState({
+    medidor: '',
+    periodo: '',
+  });
+
+  const inputLabel = React.useRef(null);
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  // React.useEffect(() => {
+  //   setLabelWidth(inputLabel.current.offsetWidth);
+  // }, []);
+
+  const handleChange = event => {
+    setValues(oldValues => ({
+      ...oldValues,
+      [event.target.name]: event.target.value,
+    }));
+  };
+  //
 
   return (
     <>
@@ -238,6 +263,88 @@ export default function Dashboard(props) {
             <BigStat {...stat} />
           </Grid>
         ))}
+        {/* Form */}
+        <Grid item xs={12}>
+        <Paper className={classes.formGrid}>
+            <form method="GET" action="controller" >
+            <input type="hidden"
+                   name="nomeDoTratadorDePagina"
+                   value="mvc.pagehandlers.Tratador_pagina2_jsp" />
+            <input type="hidden"
+                   name="form"
+                   value="form1" />
+            <table className={classes.mainFormTable}>
+              <tbody className={classes.mainFormBody}>
+                <tr className={classes.mainFormRow}>
+                    <td className={classes.mainFormItem}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel htmlFor="medidor-auto-width">Medidor</InputLabel>
+                      <Select
+                        value={values.medidor}
+                        onChange={handleChange}
+                        inputProps={{
+                          name: 'medidor',
+                          id: 'medidor-auto-width',
+                        }}
+                        autoWidth
+                      >
+                        <MenuItem value={10}>Ten</MenuItem>
+                        <MenuItem value={20}>Twenty</MenuItem>
+                        <MenuItem value={30}>Thirty</MenuItem>
+                      </Select>
+                    </FormControl>
+                    </td>
+            <td id="datafinal" className={classes.mainFormItem}> 
+            <TextField
+              id="date"
+              label="Data final a ser exibida"
+              type="date"
+              defaultValue="2017-05-24"
+              className={classes.textField}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />  
+            </td>
+            <td className={classes.mainFormItem}>
+                    <FormControl className={classes.formControl}>
+                      <InputLabel htmlFor="medidor-auto-width">Período</InputLabel>
+                      <Select
+                        value={values.periodo}
+                        onChange={handleChange}
+                        inputProps={{
+                          name: 'periodo',
+                          id: 'periodo-auto-width',
+                        }}
+                        autoWidth
+                      >
+                        <MenuItem value={"ano"}>Ano</MenuItem>
+                        <MenuItem value={"mes"}>Mês</MenuItem>
+                        <MenuItem value={"semana"}>Semana</MenuItem>
+                        <MenuItem value={"dia"}>Dia</MenuItem>
+                      </Select>
+                    </FormControl>
+            </td>
+            
+            {/* <td className={classes.mainFormItem}>
+            <input type="Radio" name="datatype" value="table" checked />Tabela
+            <input type="Radio" name="datatype" value="graphics" />Gráfico
+            </td> */}
+            
+                </tr>
+            </tbody>
+            </table>
+            <br />
+            <tr className={classes.mainFormRow}>
+            {/* <input type="button" value="EXIBIR" onclick="fazerPedidoAJAXMedidas(datetime,medidor,periodo)" /> */}
+            <Button variant="outlined" onclick="fazerPedidoAJAXMedidas(datetime,medidor,periodo)">
+              Visualizar
+            </Button>
+            </tr>
+          </form>
+          </Paper>
+        </Grid>
+        {/* Form */}
         <Grid item xs={12}>
           <Widget
             bodyClass={classes.mainChartBody}
