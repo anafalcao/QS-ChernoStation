@@ -16,15 +16,30 @@ const client = new ApolloClient({
   uri: 'http://localhost:5000/graphql',
 });
 
-// client
-//   .query({
-//     query: gql`
-//       {
-//         nodes
-//       }
-//     `
-//   })
-//   .then(result => console.log(result));
+client
+  .query({
+    query: gql`
+      {
+        allMeasurementTypes {
+          edges {
+            node {
+              id
+              name
+              rulesByMeasurementTypeId {
+                nodes {
+                  description
+                  alertLevel
+                  id
+                  maxValue
+                }
+              }
+            }
+          }
+        }
+      }
+    `
+  })
+  .then(result => console.log(result));
 
 ReactDOM.render(
   <LayoutProvider>

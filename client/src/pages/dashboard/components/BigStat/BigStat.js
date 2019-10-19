@@ -23,8 +23,8 @@ export default function BigStat(props) {
   return (
     <Widget
       header={
-        <div className={classes.title}>
-          <Typography variant="h5">{product}</Typography>
+        <div className={classes.title }>
+          <Typography variant="h4" weight="bold">{product}</Typography>
 
           <Select
             value={value}
