@@ -114,12 +114,12 @@ export default makeStyles(theme => ({
   },
   formGrid: {
     width: "80%",
-    padding: "30px",
     margin: "auto",
   },
   mainFormTable: {
     width: "100%",
     display: "table",
+    padding: "10px",
   },
   mainFormBody: {
     width: "100%",
@@ -133,6 +133,8 @@ export default makeStyles(theme => ({
     [theme.breakpoints.only("xs")]: {
       flexWrap: "wrap",
     },
+    marginTop: "20px",
+    marginBottom: "20px",
   },
   mainFormItem: {
     display: "block",

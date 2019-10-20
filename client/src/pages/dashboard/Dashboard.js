@@ -333,14 +333,16 @@ export default function Dashboard(props) {
             </td> */}
             
                 </tr>
-            </tbody>
+            
+                <tr className={classes.mainFormRow}>
+                  <td>
+                    <Button variant="outlined" onClick={Queries.getRulesByMeasurement}>
+                      Visualizar
+                    </Button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
-            <br />
-            <tr className={classes.mainFormRow}>
-            <Button variant="outlined" onClick={Queries.getRulesByMeasurement}>
-              Visualizar
-            </Button>
-            </tr>
           </form>
           </Paper>
         </Grid>
