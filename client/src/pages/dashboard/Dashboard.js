@@ -13,6 +13,9 @@ import {
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import {
+  CartesianGrid,
+  Legend,
+  Tooltip,
   ResponsiveContainer,
   ComposedChart,
   AreaChart,
@@ -76,7 +79,7 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <PageTitle title="Dashboard" button="Latest Reports" />
+      <PageTitle title="Dashboard" />
       <Grid container spacing={4}>
         {/* <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
@@ -348,108 +351,42 @@ export default function Dashboard(props) {
         </Grid>
         {/* Form */}
         <Grid item xs={12}>
-          <Widget
-            bodyClass={classes.mainChartBody}
-            header={
-              <div className={classes.mainChartHeader}>
-                <Typography
-                  variant="h5"
-                  color="text"
-                  colorBrightness="secondary"
-                >
-                  Gráfico
-                </Typography>
-                <div className={classes.mainChartHeaderLabels}>
-                  <div className={classes.mainChartHeaderLabel}>
-                    <Dot color="warning" />
-                    <Typography className={classes.mainChartLegentElement}>
-                      Tablet
-                    </Typography>
-                  </div>
-                  <div className={classes.mainChartHeaderLabel}>
-                    <Dot color="primary" />
-                    <Typography className={classes.mainChartLegentElement}>
-                      Mobile
-                    </Typography>
-                  </div>
-                  <div className={classes.mainChartHeaderLabel}>
-                    <Dot color="primary" />
-                    <Typography className={classes.mainChartLegentElement}>
-                      Desktop
-                    </Typography>
-                  </div>
-                </div>
-                <Select
-                  value={mainChartState}
-                  onChange={e => setMainChartState(e.target.value)}
-                  input={
-                    <OutlinedInput
-                      labelWidth={0}
-                      classes={{
-                        notchedOutline: classes.mainChartSelectRoot,
-                        input: classes.mainChartSelect,
-                      }}
-                    />
-                  }
-                  autoWidth
-                >
-                  <MenuItem value="daily">Daily</MenuItem>
-                  <MenuItem value="weekly">Weekly</MenuItem>
-                  <MenuItem value="monthly">Monthly</MenuItem>
-                </Select>
-              </div>
-            }
-          >
-            <ResponsiveContainer width="100%" minWidth={500} height={350}>
-              <ComposedChart
-                margin={{ top: 0, right: -15, left: -15, bottom: 0 }}
-                data={mainChartData}
+        <Widget title="Gráfico" upperTitle>
+            <ResponsiveContainer width="100%" height={350}>
+              <LineChart
+                width={500}
+                height={300}
+                data={mock.lineChartData}
+                margin={{
+                  top: 20,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
               >
-                <YAxis
-                  ticks={[0, 2500, 5000, 7500]}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                />
-                <XAxis
-                  tickFormatter={i => i + 1}
-                  tick={{ fill: theme.palette.text.hint + "80", fontSize: 14 }}
-                  stroke={theme.palette.text.hint + "80"}
-                  tickLine={false}
-                />
-                <Area
-                  type="natural"
-                  dataKey="desktop"
-                  fill={theme.palette.background.light}
-                  strokeWidth={0}
-                  activeDot={false}
-                />
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
                 <Line
-                  type="natural"
-                  dataKey="mobile"
+                  type="monotone"
+                  dataKey="temperatura"
                   stroke={theme.palette.primary.main}
-                  strokeWidth={2}
-                  dot={false}
-                  activeDot={false}
+                  activeDot={{ r: 8 }}
                 />
                 <Line
-                  type="linear"
-                  dataKey="tablet"
-                  stroke={theme.palette.warning.main}
-                  strokeWidth={2}
-                  dot={{
-                    stroke: theme.palette.warning.dark,
-                    strokeWidth: 2,
-                    fill: theme.palette.warning.main,
-                  }}
+                  type="monotone"
+                  dataKey="pressao"
+                  stroke={theme.palette.secondary.main}
                 />
-              </ComposedChart>
+              </LineChart>
             </ResponsiveContainer>
           </Widget>
         </Grid>
         <Grid item xs={12}>
           <Widget
-            title="Dados em tabela"
+            title="Medidas mais recentes"
             upperTitle
             noBodyPadding
             bodyClass={classes.tableWidget}

@@ -30,24 +30,15 @@ export default function TableComponent({ data }) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.map(({ id, name, email, product, price, date, city, status }) => (
+        {data.map(({ id, medidor, xenonio, uranio, reatividade, temperatura, pressao, energia}) => (
           <TableRow key={id}>
-            <TableCell className="pl-3 fw-normal">{name}</TableCell>
-            <TableCell>{email}</TableCell>
-            <TableCell>{product}</TableCell>
-            <TableCell>{price}</TableCell>
-            <TableCell>{date}</TableCell>
-            <TableCell>{city}</TableCell>
-            <TableCell>
-              <Button
-                color={states[status.toLowerCase()]}
-                size="small"
-                className="px-2"
-                variant="contained"
-              >
-                {status}
-              </Button>
-            </TableCell>
+            <TableCell className="pl-3 fw-normal">{medidor}</TableCell>
+            <TableCell>{xenonio}</TableCell>
+            <TableCell>{uranio}</TableCell>
+            <TableCell>{reatividade}</TableCell>
+            <TableCell>{temperatura}</TableCell>
+            <TableCell>{pressao}</TableCell>
+            <TableCell>{energia}</TableCell>
           </TableRow>
         ))}
       </TableBody>

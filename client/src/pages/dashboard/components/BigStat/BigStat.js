@@ -37,9 +37,9 @@ export default function BigStat(props) {
             }
             className={classes.select}
           >
-            <MenuItem value="daily">Daily</MenuItem>
-            <MenuItem value="weekly">Weekly</MenuItem>
-            <MenuItem value="monthly">Monthly</MenuItem>
+            <MenuItem value="daily">Diário</MenuItem>
+            <MenuItem value="weekly">Semanal</MenuItem>
+            <MenuItem value="monthly">Mensal</MenuItem>
           </Select>
         </div>
       }
