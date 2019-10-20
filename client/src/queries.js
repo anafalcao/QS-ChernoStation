@@ -30,5 +30,25 @@ export default class Queries {
         .then(result => console.log(result));
     }
 
+    static async getUsers() {
+        return client
+        .query({
+            query: gql`
+            {
+                allUsers {
+                  nodes {
+                    email
+                    id
+                    name
+                    passwordHash
+                    username
+                    nodeId
+                  }
+                }
+            }
+            `
+        });
+      }
+
 
 }

@@ -43,7 +43,6 @@ export default makeStyles(theme => ({
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
     [theme.breakpoints.down("md")]: {
       width: "50%",
@@ -144,5 +143,10 @@ export default makeStyles(theme => ({
       position: "absolute",
       bottom: theme.spacing(2),
     },
+  },
+  loginError: {
+    padding: "20px",
+    marginBottom: "40px",
+    marginTop: "40px",
   },
 }));

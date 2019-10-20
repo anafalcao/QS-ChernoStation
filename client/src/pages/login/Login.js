@@ -8,6 +8,7 @@ import {
   Tab,
   TextField,
   Fade,
+  Paper,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -35,7 +36,8 @@ function Login(props) {
   var [nameValue, setNameValue] = useState("");
   var [loginValue, setLoginValue] = useState("");
   var [passwordValue, setPasswordValue] = useState("");
-
+  console.log(error);
+  console.log(isLoading);
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
@@ -43,6 +45,13 @@ function Login(props) {
         <Typography className={classes.logotypeText}>ChernoStation</Typography>
       </div>
       <div className={classes.formContainer}>
+        <Fade in={error} className={classes.loginError}>
+                <Paper>
+                  <Typography color="secondary" className={classes.errorMessage}>
+                    Há algo errado com seu usuário ou senha :(
+                  </Typography>
+                </Paper>
+        </Fade>
         <div className={classes.form}>
           <Tabs
             value={activeTabId}
@@ -51,19 +60,14 @@ function Login(props) {
             textColor="primary"
             centered
           >
-            <Tab label="Login" classes={{ root: classes.tab }} />
-            <Tab label="New User" classes={{ root: classes.tab }} />
+            <Tab label="Entrar" classes={{ root: classes.tab }} />
+            <Tab label="Cadastro" classes={{ root: classes.tab }} />
           </Tabs>
           {activeTabId === 0 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
-                Good Morning, User
+                Bem-vindo de volta!
               </Typography>
-              <Fade in={error}>
-                <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
-                </Typography>
-              </Fade>
               <TextField
                 id="email"
                 InputProps={{
@@ -75,7 +79,7 @@ function Login(props) {
                 value={loginValue}
                 onChange={e => setLoginValue(e.target.value)}
                 margin="normal"
-                placeholder="Email Adress"
+                placeholder="E-mail"
                 type="email"
                 fullWidth
               />
@@ -90,7 +94,7 @@ function Login(props) {
                 value={passwordValue}
                 onChange={e => setPasswordValue(e.target.value)}
                 margin="normal"
-                placeholder="Password"
+                placeholder="Senha"
                 type="password"
                 fullWidth
               />

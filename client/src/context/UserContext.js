@@ -1,4 +1,7 @@
 import React from "react";
+import Queries from "../../src/queries";
+import { client } from '../index';
+import { gql } from "apollo-boost";
 
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
@@ -7,6 +10,8 @@ function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
       return { ...state, isAuthenticated: true };
+    case "LOGIN_FAILURE":
+      return { ...state, isAuthenticated: false };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
     default: {
@@ -49,24 +54,53 @@ export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 
 // ###########################################################
 
-function loginUser(dispatch, login, password, history, setIsLoading, setError) {
-  setError(false);
+function hasValueDeep(json, findValue) {
+  const values = Object.values(json);
+  const object = null;
+  let hasValue = values.includes(findValue);
+  values.forEach(function(value) {
+      if (typeof value === "object") {
+          hasValue = hasValue || hasValueDeep(value, findValue);
+      }
+  })
+  return hasValue;
+}
+
+async function loginUser(dispatch, login, password, history, setIsLoading, setError) {
+  // let users = null;
+  // Queries.getUsers().then(result => {users = result;});
+  const users = await Queries.getUsers();
+  const userList = users.data.allUsers.nodes;
   setIsLoading(true);
 
   if (!!login && !!password) {
-    setTimeout(() => {
-      localStorage.setItem("id_token", "1");
-      dispatch({ type: "LOGIN_SUCCESS" });
-      setError(null);
-      setIsLoading(false);
+    let loggedUser = userList.filter(user => user.email === login);
+    console.log(loggedUser);
+    if (loggedUser[0] && loggedUser[0].passwordHash === password) {
+      setTimeout(() => {
+        localStorage.setItem("id_token", loggedUser[0].id);
+        dispatch({ type: "LOGIN_SUCCESS" });
+        setError(null);
+        
+        history.push("/app/dashboard");
+      }, 2000);
+      return;
 
-      history.push("/app/dashboard");
-    }, 2000);
+    } else {
+      setIsLoading(false);
+      setTimeout(() => {
+        dispatch({ type: "LOGIN_FAILURE" });
+        setError(true);
+        
+        history.push("/login");
+      }, 2000);
+    }
   } else {
     dispatch({ type: "LOGIN_FAILURE" });
     setError(true);
     setIsLoading(false);
   }
+  setError(true);
 }
 
 function signOut(dispatch, history) {
