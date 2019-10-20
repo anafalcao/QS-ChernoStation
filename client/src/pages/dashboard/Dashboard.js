@@ -37,6 +37,7 @@ import { Typography } from "../../components/Wrappers";
 import Dot from "../../components/Sidebar/components/Dot";
 import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
+import Queries from "../../queries";
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -336,8 +337,7 @@ export default function Dashboard(props) {
             </table>
             <br />
             <tr className={classes.mainFormRow}>
-            {/* <input type="button" value="EXIBIR" onclick="fazerPedidoAJAXMedidas(datetime,medidor,periodo)" /> */}
-            <Button variant="outlined" onclick="fazerPedidoAJAXMedidas(datetime,medidor,periodo)">
+            <Button variant="outlined" onClick={Queries.getRulesByMeasurement}>
               Visualizar
             </Button>
             </tr>
