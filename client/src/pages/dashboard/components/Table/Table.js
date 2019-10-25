@@ -30,12 +30,12 @@ export default function TableComponent({ data }) {
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.map(({ id, medidor, xenonio, uranio, reatividade, temperatura, pressao, energia}) => (
+        {data.map(({ id, medidor, xenonio, uranio, radioativade, temperatura, pressao, energia}) => (
           <TableRow key={id}>
             <TableCell className="pl-3 fw-normal">{medidor}</TableCell>
             <TableCell>{xenonio}</TableCell>
             <TableCell>{uranio}</TableCell>
-            <TableCell>{reatividade}</TableCell>
+            <TableCell>{radioativade}</TableCell>
             <TableCell>{temperatura}</TableCell>
             <TableCell>{pressao}</TableCell>
             <TableCell>{energia}</TableCell>
