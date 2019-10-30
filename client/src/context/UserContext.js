@@ -1,5 +1,5 @@
 import React from "react";
-import Queries from "../../src/queries";
+import User from "../../src/models/User";
 import { client } from '../index';
 import { gql } from "apollo-boost";
 
@@ -67,9 +67,7 @@ function hasValueDeep(json, findValue) {
 }
 
 async function loginUser(dispatch, login, password, history, setIsLoading, setError) {
-  // let users = null;
-  // Queries.getUsers().then(result => {users = result;});
-  const users = await Queries.getUsers();
+  const users = await User.getUsers();
   const userList = users.data.allUsers.nodes;
   setIsLoading(true);
 
