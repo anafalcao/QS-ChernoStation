@@ -1,9 +1,12 @@
 import React, { useState } from "react";
+import { useQuery } from '@apollo/react-hooks';
+
 import { Grid, Select, MenuItem, Input } from "@material-ui/core";
 import { ArrowForward as ArrowForwardIcon } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { BarChart, Bar } from "recharts";
 import classnames from "classnames";
+import Measurements from "../../../../models/Measurements";
 
 // styles
 import useStyles from "./styles";
@@ -13,7 +16,75 @@ import Widget from "../../../../components/Widget";
 import { Typography } from "../../../../components/Wrappers";
 
 export default function BigStat(props) {
-  var { product, total, color, registrations, bounce } = props;
+  var { measurement_type_id, name } = props;
+
+  const { data, loading, error } = useQuery(Measurements.GET_MEASUREMENTS, {variables: {type_id: measurement_type_id}});
+  console.log('-------measurement_type----------');
+  console.log(data, loading, error);
+
+  var total = {};
+  var color = {};
+  var bounce = {};
+  var registrations = {};
+
+  if(name === "Quantidade de Xennio"){
+    total = {
+      monthly: 4232,
+      weekly: 1465,
+      daily: 199,
+      percent: { value: 3.7, profit: false }
+    };
+    color = "primary";
+    registrations = {
+      monthly: { value: 830, profit: false },
+      weekly: { value: 215, profit: true },
+      daily: { value: 33, profit: true }
+    };
+    bounce = {
+      monthly: { value: 4.5, profit: false },
+      weekly: { value: 3, profit: true },
+      daily: { value: 3.25, profit: true }
+    };
+  }
+  else if(name === "Quantidade de Uranio"){
+    total = {
+      monthly: 754,
+      weekly: 180,
+      daily: 27,
+      percent: { value: 2.5, profit: true }
+    };
+    color = "warning";
+    registrations = {
+      monthly: { value: 32, profit: true },
+      weekly: { value: 8, profit: true },
+      daily: { value: 2, profit: false }
+    };
+    bounce = {
+      monthly: { value: 2.5, profit: true },
+      weekly: { value: 4, profit: false },
+      daily: { value: 4.5, profit: false }
+    };
+  }
+  else {
+    total = {
+      monthly: 1025,
+      weekly: 301,
+      daily: 44,
+      percent: { value: 3.1, profit: true }
+    };
+    color = "secondary";
+    registrations = {
+      monthly: { value: 230, profit: true },
+      weekly: { value: 58, profit: false },
+      daily: { value: 15, profit: false }
+    };
+    bounce = {
+      monthly: { value: 21.5, profit: false },
+      weekly: { value: 19.35, profit: false },
+      daily: { value: 10.1, profit: true }
+    };
+  }
+
   var classes = useStyles();
   var theme = useTheme();
 
@@ -24,7 +95,7 @@ export default function BigStat(props) {
     <Widget
       header={
         <div className={classes.title }>
-          <Typography variant="h4" weight="bold">{product}</Typography>
+          <Typography variant="h4" weight="bold">{name}</Typography>
 
           <Select
             value={value}

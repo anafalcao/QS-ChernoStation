@@ -1,6 +1,5 @@
 import { client } from './index';
-import { gql } from "apollo-boost";
-// or you can use `import gql from 'graphql-tag';` instead
+import gql from 'graphql-tag';
 
 export default class Queries {
     static getRulesByMeasurement() {
@@ -29,6 +28,4 @@ export default class Queries {
         })
         .then(result => console.log(result));
     }
-
-
 }

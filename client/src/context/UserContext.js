@@ -1,7 +1,5 @@
 import React from "react";
 import User from "../../src/models/User";
-import { client } from '../index';
-import { gql } from "apollo-boost";
 
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
@@ -53,18 +51,6 @@ function useUserDispatch() {
 export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 
 // ###########################################################
-
-function hasValueDeep(json, findValue) {
-  const values = Object.values(json);
-  const object = null;
-  let hasValue = values.includes(findValue);
-  values.forEach(function(value) {
-      if (typeof value === "object") {
-          hasValue = hasValue || hasValueDeep(value, findValue);
-      }
-  })
-  return hasValue;
-}
 
 async function loginUser(dispatch, login, password, history, setIsLoading, setError) {
   const users = await User.getUsers();
