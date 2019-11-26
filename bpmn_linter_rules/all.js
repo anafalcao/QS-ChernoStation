@@ -15,7 +15,8 @@ const allRules = [
   'single-blank-start-event',
   'single-event-definition',
   'start-event-required',
-  'sub-process-blank-start-event'
+  'sub-process-blank-start-event',
+  'no-script-task'
 ];
 
 
