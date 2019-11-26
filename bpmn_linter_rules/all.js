@@ -12,6 +12,7 @@ const allRules = [
   'no-gateway-join-fork',
   'no-implicit-split',
   'no-inclusive-gateway',
+  'no-outgoing-sequence-flow-end-event',
   'single-blank-start-event',
   'single-event-definition',
   'start-event-required',
