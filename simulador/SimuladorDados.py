@@ -10,15 +10,15 @@ import psycopg2
 
 class simulador_UM:
 
-    def __init__(self, uranio : float, xenonio : float, radioatividade : float, temperatura : int, pressao : int, energiaprod : float, numero : str):
+    def __init__(self):
         #Dados a serem simulados e enviados à Cloud da IBM
-        self.uranio = uranio
-        self.xenonio = xenonio
-        self.radioatividade = radioatividade
-        self.temperatura = temperatura
-        self.pressao = pressao
-        self.energiaprod = energiaprod
-        self.numero = numero
+        self.numero = 1
+        self.uranio = round(random.uniform(2.5,2.8), 3)
+        self.xenonio = round(random.uniform(3,4), 3)
+        self.radioatividade = round(random.uniform(-0.25,0.25), 3)
+        self.temperatura = random.randint(300, 450)
+        self.pressao = random.randint(2000,2400)
+        self.energiaprod = round(random.uniform(1,3), 3)
 
         #######################################################################################################
         
@@ -53,7 +53,7 @@ class simulador_UM:
 
 
     def main(self):
-        while True:
+        # while True:
             numero = self.numero
             uranio = self.uranio
             xenonio = self.xenonio
