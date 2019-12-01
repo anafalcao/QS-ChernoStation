@@ -62,7 +62,7 @@ export default function Dashboard(props) {
           )
         }
         else if (value > alertArr[0].maxValue) {
-          colors[colorId] = "#FFEA4F";
+          colors[colorId] = "#ECD44D";
           notificationBlocks.push(
           <Paper className={classes.notificationFirst}>
             <Typography variant="h5" component="h3">

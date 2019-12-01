@@ -17,7 +17,7 @@ export default makeStyles(theme => ({
     width: "100%",
     marginBottom: "10px",
     padding: theme.spacing(3, 2),
-    backgroundColor:"#FFEA4F",
+    backgroundColor:"#ECD44D",
     color: "white",
   },
   notificationSecond: {
