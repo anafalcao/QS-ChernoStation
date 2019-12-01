@@ -6,6 +6,11 @@ export default makeStyles(theme => ({
     display: "flex",
     flexDirection: "column",
   },
+  notificationBlock: {
+    display: "block",
+    width: "100%",
+    marginBottom: "10px",
+  },
   visitsNumberContainer: {
     display: "flex",
     alignItems: "center",

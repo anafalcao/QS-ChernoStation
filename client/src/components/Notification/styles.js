@@ -44,4 +44,7 @@ export default makeStyles(theme => ({
       background: "transparent",
     },
   },
+  notificationBlockText: {
+    padding: "10px",
+  },
 }));

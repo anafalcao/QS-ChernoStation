@@ -1,5 +1,6 @@
 import React from "react";
 import { useQuery } from '@apollo/react-hooks';
+import NotificationBlock from '../../components/Notification/NotificationBlock';
 
 import {
   Grid,
@@ -10,6 +11,7 @@ import {
   FormControl,
   Button,
   Paper,
+  Typography,
 } from "@material-ui/core";
 import { useTheme } from "@material-ui/styles";
 import {
@@ -34,6 +36,7 @@ import Table from "./components/Table/Table";
 import BigStat from "./components/BigStat/BigStat";
 import Queries from "../../queries";
 import Measurements from "../../models/Measurements";
+import Notifications from "../../models/Notifications";
 
 export default function Dashboard(props) {
   var classes = useStyles();
@@ -68,9 +71,64 @@ export default function Dashboard(props) {
     bigStatGrid = <p>Loading...</p>
   }
 
+  const measurement_types2 = useQuery(Notifications.GET_LATEST_MEASUREMENTS_WITH_NOTIFICATIONS).data;
+
+  
+  var notificationBlocks = [];
+
+  if(measurement_types2){
+    console.log(measurement_types2);
+    measurement_types2.allMeasurements.nodes.map((currentValue) => {
+      let value = currentValue.value;
+      let alertArr = currentValue.measurementTypeByMeasurementTypeId.rulesByMeasurementTypeId.nodes;
+      if (alertArr[0]) {
+        if (value > alertArr[2].maxValue) {
+          notificationBlocks.push( 
+          <Paper>
+            <Typography variant="h5" component="h3">
+              {alertArr[2].description}
+            </Typography>
+            <Typography component="p">
+              {alertArr[2].suggestion}
+            </Typography>
+          </Paper>
+          )
+        }
+        else if (value > alertArr[1].maxValue) {
+          notificationBlocks.push(
+          <Paper>
+            <Typography variant="h5" component="h3">
+              {alertArr[1].description}
+            </Typography>
+            <Typography component="p">
+              {alertArr[1].suggestion}
+            </Typography>
+          </Paper>
+          )
+        }
+        else if (value > alertArr[0].maxValue) {
+          notificationBlocks.push(
+          <Paper>
+            <Typography variant="h5" component="h3">
+              {alertArr[0].description}
+            </Typography>
+            <Typography component="p">
+              {alertArr[0].suggestion}
+            </Typography>
+          </Paper>
+          )
+        }
+      }
+    }
+    );
+  }
+
   return (
     <>
       <PageTitle title="Dashboard" />
+      <div className={classes.notificationBlock}>
+      {notificationBlocks.map(child => child)}
+      </div>
       <Grid container spacing={4}>
         {bigStatGrid}
         {/* Form */}
