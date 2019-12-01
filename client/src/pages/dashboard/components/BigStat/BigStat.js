@@ -127,8 +127,8 @@ function computeAverages(measurements) {
     totals : {monthly: 0, weekly: 0, daily: 0},
     entries : {monthly: 0, weekly: 0, daily: 0},
     means : {monthly: 0, weekly: 0, daily: 0},
-    min : {monthly: 0, weekly: 0, daily: 0},
-    max : {monthly: 0, weekly: 0, daily: 0},
+    min : {monthly: undefined, weekly: undefined, daily: undefined},
+    max : {monthly: undefined, weekly: undefined, daily: undefined},
   }
   
   const today = new Date();
@@ -153,8 +153,17 @@ function computeAverages(measurements) {
       results.data[time_frame].push({value: measurement.value});
       results.totals[time_frame] += measurement.value;
       results.entries[time_frame] += 1;
-      results.max[time_frame] = Math.max(results.max[time_frame], measurement.value);
-      results.min[time_frame] = Math.min(results.min[time_frame], measurement.value);
+      
+      if(results.max[time_frame] === undefined){
+        results.max[time_frame] = measurement.value;
+      } else {
+        results.max[time_frame] = Math.max(results.max[time_frame], measurement.value);
+      }
+      if(results.min[time_frame] === undefined){
+        results.min[time_frame] = measurement.value;
+      } else {
+        results.min[time_frame] = Math.min(results.min[time_frame], measurement.value);
+      }
     })
   })
 
