@@ -18,6 +18,7 @@ export default class Measurements {
         nodes {
           id
           value
+          datetime
         }
       }
     }`;

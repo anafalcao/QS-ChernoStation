@@ -18,72 +18,13 @@ import { Typography } from "../../../../components/Wrappers";
 export default function BigStat(props) {
   var { measurement_type_id, name } = props;
 
-  const { data, loading, error } = useQuery(Measurements.GET_MEASUREMENTS, {variables: {type_id: measurement_type_id}});
-  console.log('-------measurement_type----------');
+  var { data, loading, error } = useQuery(Measurements.GET_MEASUREMENTS, 
+    {variables: {type_id: measurement_type_id}});
+
+  console.log(name);
   console.log(data, loading, error);
-
-  var total = {};
-  var color = {};
-  var bounce = {};
-  var registrations = {};
-
-  if(name === "Quantidade de Xennio"){
-    total = {
-      monthly: 4232,
-      weekly: 1465,
-      daily: 199,
-      percent: { value: 3.7, profit: false }
-    };
-    color = "primary";
-    registrations = {
-      monthly: { value: 830, profit: false },
-      weekly: { value: 215, profit: true },
-      daily: { value: 33, profit: true }
-    };
-    bounce = {
-      monthly: { value: 4.5, profit: false },
-      weekly: { value: 3, profit: true },
-      daily: { value: 3.25, profit: true }
-    };
-  }
-  else if(name === "Quantidade de Uranio"){
-    total = {
-      monthly: 754,
-      weekly: 180,
-      daily: 27,
-      percent: { value: 2.5, profit: true }
-    };
-    color = "warning";
-    registrations = {
-      monthly: { value: 32, profit: true },
-      weekly: { value: 8, profit: true },
-      daily: { value: 2, profit: false }
-    };
-    bounce = {
-      monthly: { value: 2.5, profit: true },
-      weekly: { value: 4, profit: false },
-      daily: { value: 4.5, profit: false }
-    };
-  }
-  else {
-    total = {
-      monthly: 1025,
-      weekly: 301,
-      daily: 44,
-      percent: { value: 3.1, profit: true }
-    };
-    color = "secondary";
-    registrations = {
-      monthly: { value: 230, profit: true },
-      weekly: { value: 58, profit: false },
-      daily: { value: 15, profit: false }
-    };
-    bounce = {
-      monthly: { value: 21.5, profit: false },
-      weekly: { value: 19.35, profit: false },
-      daily: { value: 10.1, profit: true }
-    };
-  }
+  var averages;
+  var render_widget;
 
   var classes = useStyles();
   var theme = useTheme();
@@ -91,101 +32,129 @@ export default function BigStat(props) {
   // local
   var [value, setValue] = useState("daily");
 
-  return (
-    <Widget
-      header={
-        <div className={classes.title }>
-          <Typography variant="h4" weight="bold">{name}</Typography>
+  if(loading){
+    render_widget = <p>Loading...</p>
+  } else if(error){
+    render_widget = <p>Error...</p>
+  } else {
+    averages = computeAverages(data.allMeasurements.nodes);
 
-          <Select
-            value={value}
-            onChange={e => setValue(e.target.value)}
-            input={
-              <Input
-                disableUnderline
-                classes={{ input: classes.selectInput }}
-              />
-            }
-            className={classes.select}
-          >
-            <MenuItem value="daily">Diário</MenuItem>
-            <MenuItem value="weekly">Semanal</MenuItem>
-            <MenuItem value="monthly">Mensal</MenuItem>
-          </Select>
-        </div>
-      }
-      upperTitle
-    >
-      <div className={classes.totalValueContainer}>
-        <div className={classes.totalValue}>
-          <Typography size="xxl" color="text" colorBrightness="secondary">
-            {total[value]}
-          </Typography>
-          <Typography color={total.percent.profit ? "success" : "secondary"}>
-            &nbsp;{total.percent.profit ? "+" : "-"}
-            {total.percent.value}%
-          </Typography>
-        </div>
-        <BarChart width={150} height={70} data={getRandomData()}>
-          <Bar
-            dataKey="value"
-            fill={theme.palette[color].main}
-            radius={10}
-            barSize={10}
-          />
-        </BarChart>
-      </div>
-      <div className={classes.bottomStatsContainer}>
-        <div className={classnames(classes.statCell, classes.borderRight)}>
-          <Grid container alignItems="center">
-            <Typography variant="h6">{registrations[value].value}</Typography>
-            <ArrowForwardIcon
-              className={classnames(classes.profitArrow, {
-                [!registrations[value].profit]: classes.profitArrowDanger,
-              })}
-            />
-          </Grid>
-          <Typography size="sm" color="text" colorBrightness="secondary">
-            Registrations
-          </Typography>
-        </div>
-        <div className={classes.statCell}>
-          <Grid container alignItems="center">
-            <Typography variant="h6">{bounce[value].value}%</Typography>
-            <ArrowForwardIcon
-              className={classnames(classes.profitArrow, {
-                [!registrations[value].profit]: classes.profitArrowDanger,
-              })}
-            />
-          </Grid>
-          <Typography size="sm" color="text" colorBrightness="secondary">
-            Bounce Rate
-          </Typography>
-        </div>
-        <div className={classnames(classes.statCell, classes.borderRight)}>
-          <Grid container alignItems="center">
-            <Typography variant="h6">
-              {registrations[value].value * 10}
+    render_widget = 
+      <Widget
+        header={
+          <div className={classes.title }>
+            <Typography variant="h4" weight="bold">{name}</Typography>
+
+            <Select
+              value={value}
+              onChange={e => setValue(e.target.value)}
+              input={
+                <Input
+                  disableUnderline
+                  classes={{ input: classes.selectInput }}
+                />
+              }
+              className={classes.select}
+            >
+              <MenuItem value="daily">Diário</MenuItem>
+              <MenuItem value="weekly">Semanal</MenuItem>
+              <MenuItem value="monthly">Mensal</MenuItem>
+            </Select>
+          </div>
+        }
+        upperTitle
+      >
+        <div className={classes.totalValueContainer}>
+          <div className={classes.totalValue}>
+            <Typography size="xxl" color="text" colorBrightness="secondary">
+              {averages.totals[value]}
             </Typography>
-            <ArrowForwardIcon
-              className={classnames(classes.profitArrow, {
-                [classes.profitArrowDanger]: !registrations[value].profit,
-              })}
+            {/*<Typography color={total.percent.profit ? "success" : "secondary"}>
+              &nbsp;{total.percent.profit ? "+" : "-"}
+              {total.percent.value}%
+            </Typography>*/}
+          </div>
+          <BarChart width={150} height={70} data={averages.data[value]}>
+            <Bar
+              dataKey="value"
+              radius={10}
+              barSize={10}
             />
-          </Grid>
-          <Typography size="sm" color="text" colorBrightness="secondary">
-            Views
-          </Typography>
+          </BarChart>
         </div>
-      </div>
-    </Widget>
-  );
+        <div className={classes.bottomStatsContainer}>
+          <div className={classnames(classes.statCell, classes.borderRight)}>
+            <Grid container alignItems="center">
+              <Typography variant="h6">{averages.entries[value]}</Typography>
+              <ArrowForwardIcon
+                className={classnames(classes.profitArrow, {
+                  [averages.entries[value] < 0]: classes.profitArrowDanger,
+                })}
+              />
+            </Grid>
+            <Typography size="sm" color="text" colorBrightness="secondary">
+              Nº de Medidas
+            </Typography>
+          </div>
+          <div className={classes.statCell}>
+            <Grid container alignItems="center">
+              <Typography variant="h6">{averages.means[value]}</Typography>
+              <ArrowForwardIcon
+                className={classnames(classes.profitArrow, {
+                  [averages.means[value] < 0]: classes.profitArrowDanger,
+                })}
+              />
+            </Grid>
+            <Typography size="sm" color="text" colorBrightness="secondary">
+              Média
+            </Typography>
+          </div>
+        </div>
+      </Widget>
+  }
+
+  return (render_widget);
 }
 
 // #######################################################################
 
-function getRandomData() {
-  return Array(7)
-    .fill()
-    .map(() => ({ value: Math.floor(Math.random() * 10) + 1 }));
+function computeAverages(measurements) {
+  var results = {
+    data : {monthly: [], weekly: [], daily: []},
+    totals : {monthly: 0, weekly: 0, daily: 0},
+    entries : {monthly: 0, weekly: 0, daily: 0},
+    means : {monthly: 0, weekly: 0, daily: 0},
+  }
+  
+  const today = new Date();
+  
+  measurements.forEach(function(measurement){
+    var time_frame_matches = [];
+
+    const measurement_date = new Date(measurement.datetime)
+    const diff_in_days = (today.getTime() - measurement_date.getTime()) / (1000 * 3600 * 24);
+
+    if(diff_in_days <= 1){
+      time_frame_matches.push('daily');
+    }
+    if(diff_in_days <= 7){
+      time_frame_matches.push('weekly');
+    }
+    if(diff_in_days <= 30){
+      time_frame_matches.push('monthly');
+    }
+
+    time_frame_matches.forEach(function(time_frame){
+      results.data[time_frame].push({value: measurement.value});
+      results.totals[time_frame] += measurement.value;
+      results.entries[time_frame] += 1;
+    })
+  })
+
+  for(const time_frame in results.data){
+    results.means[time_frame] = (results.totals[time_frame]/results.entries[time_frame]).toFixed(2);
+    results.totals[time_frame] = results.totals[time_frame].toFixed(2);
+  }
+  console.log(results);
+  return results;
 }
