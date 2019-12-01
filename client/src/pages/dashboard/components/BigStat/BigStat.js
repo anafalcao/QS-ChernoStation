@@ -67,7 +67,7 @@ export default function BigStat(props) {
         <div className={classes.totalValueContainer}>
           <div className={classes.totalValue}>
             <Typography size="xxl" color="text" colorBrightness="secondary">
-              {averages.totals[value]}
+              {averages.means[value]}
             </Typography>
             {/*<Typography color={total.percent.profit ? "success" : "secondary"}>
               &nbsp;{total.percent.profit ? "+" : "-"}
@@ -98,15 +98,18 @@ export default function BigStat(props) {
           </div>
           <div className={classes.statCell}>
             <Grid container alignItems="center">
-              <Typography variant="h6">{averages.means[value]}</Typography>
-              <ArrowForwardIcon
-                className={classnames(classes.profitArrow, {
-                  [averages.means[value] < 0]: classes.profitArrowDanger,
-                })}
-              />
+              <Typography variant="h6">{averages.max[value]}</Typography>
             </Grid>
             <Typography size="sm" color="text" colorBrightness="secondary">
-              Média
+              Max
+            </Typography>
+          </div>
+          <div className={classes.statCell}>
+            <Grid container alignItems="center">
+              <Typography variant="h6">{averages.min[value]}</Typography>
+            </Grid>
+            <Typography size="sm" color="text" colorBrightness="secondary">
+              Min
             </Typography>
           </div>
         </div>
@@ -124,6 +127,8 @@ function computeAverages(measurements) {
     totals : {monthly: 0, weekly: 0, daily: 0},
     entries : {monthly: 0, weekly: 0, daily: 0},
     means : {monthly: 0, weekly: 0, daily: 0},
+    min : {monthly: undefined, weekly: undefined, daily: undefined},
+    max : {monthly: undefined, weekly: undefined, daily: undefined},
   }
   
   const today = new Date();
@@ -148,13 +153,25 @@ function computeAverages(measurements) {
       results.data[time_frame].push({value: measurement.value});
       results.totals[time_frame] += measurement.value;
       results.entries[time_frame] += 1;
+      
+      if(results.max[time_frame] === undefined){
+        results.max[time_frame] = measurement.value;
+      } else {
+        results.max[time_frame] = Math.max(results.max[time_frame], measurement.value);
+      }
+      if(results.min[time_frame] === undefined){
+        results.min[time_frame] = measurement.value;
+      } else {
+        results.min[time_frame] = Math.min(results.min[time_frame], measurement.value);
+      }
     })
   })
 
-  for(const time_frame in results.data){
+  Object.keys(results.data).forEach(function(time_frame){
     results.means[time_frame] = (results.totals[time_frame]/results.entries[time_frame]).toFixed(2);
-    results.totals[time_frame] = results.totals[time_frame].toFixed(2);
-  }
+    results.max[time_frame] = results.max[time_frame].toFixed(2);
+    results.min[time_frame] = results.min[time_frame].toFixed(2);
+  })
   console.log(results);
   return results;
 }
