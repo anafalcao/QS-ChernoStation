@@ -7,6 +7,7 @@ import { useTheme } from "@material-ui/styles";
 import { BarChart, Bar } from "recharts";
 import classnames from "classnames";
 import Measurements from "../../../../models/Measurements";
+import Notifications from "../../../../models/Notifications";
 
 // styles
 import useStyles from "./styles";
@@ -16,7 +17,7 @@ import Widget from "../../../../components/Widget";
 import { Typography } from "../../../../components/Wrappers";
 
 export default function BigStat(props) {
-  var { measurement_type_id, name } = props;
+  var { measurement_type_id, name, color } = props;
 
   var { data, loading, error } = useQuery(Measurements.GET_MEASUREMENTS, 
     {variables: {type_id: measurement_type_id}});
@@ -31,6 +32,8 @@ export default function BigStat(props) {
 
   // local
   var [value, setValue] = useState("daily");
+
+  
 
   if(loading){
     render_widget = <p>Loading...</p>
@@ -69,16 +72,13 @@ export default function BigStat(props) {
             <Typography size="xxl" color="text" colorBrightness="secondary">
               {averages.means[value]}
             </Typography>
-            {/*<Typography color={total.percent.profit ? "success" : "secondary"}>
-              &nbsp;{total.percent.profit ? "+" : "-"}
-              {total.percent.value}%
-            </Typography>*/}
           </div>
           <BarChart width={150} height={70} data={averages.data[value]}>
-            <Bar
+          <Bar
               dataKey="value"
               radius={10}
               barSize={10}
+              fill={color}
             />
           </BarChart>
         </div>
@@ -175,3 +175,5 @@ function computeAverages(measurements) {
   console.log(results);
   return results;
 }
+
+// ##########################

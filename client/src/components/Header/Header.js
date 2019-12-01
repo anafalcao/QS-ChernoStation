@@ -11,7 +11,6 @@ import {
 import {
   Menu as MenuIcon,
   MailOutline as MailIcon,
-  NotificationsNone as NotificationsIcon,
   Person as AccountIcon,
   Search as SearchIcon,
   Send as SendIcon,
@@ -35,15 +34,6 @@ import {
 } from "../../context/LayoutContext";
 import { useUserDispatch, signOut } from "../../context/UserContext";
 
-const notifications = [
-  {
-    id: 0,
-    color: "secondary",
-    type: "defence",
-    message: "Os níveis de Xenônio estão acima do normal",
-  },
-];
-
 export default function Header(props) {
   var classes = useStyles();
 
@@ -53,12 +43,7 @@ export default function Header(props) {
   var userDispatch = useUserDispatch();
 
   // local
-  var [mailMenu, setMailMenu] = useState(null);
-  var [isMailsUnread, setIsMailsUnread] = useState(true);
-  var [notificationsMenu, setNotificationsMenu] = useState(null);
-  var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
-  var [isSearchOpen, setSearchOpen] = useState(false);
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -96,23 +81,6 @@ export default function Header(props) {
         </Typography>
         <div className={classes.grow} />
         <IconButton
-          color="inherit"
-          aria-haspopup="true"
-          aria-controls="mail-menu"
-          onClick={e => {
-            setNotificationsMenu(e.currentTarget);
-            setIsNotificationsUnread(false);
-          }}
-          className={classes.headerMenuButton}
-        >
-          <Badge
-            badgeContent={isNotificationsUnread ? notifications.length : null}
-            color="warning"
-          >
-            <NotificationsIcon classes={{ root: classes.headerIcon }} />
-          </Badge>
-        </IconButton>
-        <IconButton
           aria-haspopup="true"
           color="inherit"
           className={classes.headerMenuButton}
@@ -121,24 +89,6 @@ export default function Header(props) {
         >
           <AccountIcon classes={{ root: classes.headerIcon }} />
         </IconButton>
-        <Menu
-          id="notifications-menu"
-          open={Boolean(notificationsMenu)}
-          anchorEl={notificationsMenu}
-          onClose={() => setNotificationsMenu(null)}
-          className={classes.headerMenu}
-          disableAutoFocusItem
-        >
-          {notifications.map(notification => (
-            <MenuItem
-              key={notification.id}
-              onClick={() => setNotificationsMenu(null)}
-              className={classes.headerMenuItem}
-            >
-              <Notification {...notification} typographyVariant="inherit" />
-            </MenuItem>
-          ))}
-        </Menu>
         <Menu
           id="profile-menu"
           open={Boolean(profileMenu)}
