@@ -11,7 +11,6 @@ import {
 import useStyles from "./styles";
 
 // components
-import mock from "./mock";
 import Widget from "../../components/Widget";
 import PageTitle from "../../components/PageTitle";
 import Table from "./components/Table/Table";
@@ -28,7 +27,7 @@ export default function Dashboard(props) {
   var colors = [];
 
   if(measurement_types2){
-    measurement_types2.allMeasurements.nodes.map((currentValue) => {
+    measurement_types2.allMeasurements.nodes.forEach(function (currentValue) {
       let value = currentValue.value;
       let colorId = currentValue.measurementTypeByMeasurementTypeId.id - 1;
       let alertArr = currentValue.measurementTypeByMeasurementTypeId.rulesByMeasurementTypeId.nodes;
@@ -116,7 +115,7 @@ export default function Dashboard(props) {
             noBodyPadding
             bodyClass={classes.tableWidget}
           >
-            <Table data={mock.table} />
+            <Table/>
           </Widget>
         </Grid>
       </Grid>
