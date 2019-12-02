@@ -21,6 +21,7 @@ function userReducer(state, action) {
 function UserProvider({ children }) {
   var [state, dispatch] = React.useReducer(userReducer, {
     isAuthenticated: !!localStorage.getItem("id_token"),
+    name: localStorage.getItem("user_name"),
   });
 
   return (
@@ -59,13 +60,13 @@ async function loginUser(dispatch, login, password, history, setIsLoading, setEr
 
   if (!!login && !!password) {
     let loggedUser = userList.filter(user => user.email === login);
-    console.log(loggedUser);
     if (loggedUser[0] && loggedUser[0].passwordHash === password) {
+      localStorage.setItem("id_token", loggedUser[0].id);
+      localStorage.setItem("user_name", loggedUser[0].name);
       setTimeout(() => {
-        localStorage.setItem("id_token", loggedUser[0].id);
+        console.log(localStorage, loggedUser);
         dispatch({ type: "LOGIN_SUCCESS" });
         setError(null);
-        
         history.push("/app/dashboard");
       }, 2000);
       return;

@@ -48,7 +48,7 @@ function Login(props) {
         <Fade in={error} className={classes.loginError}>
                 <Paper>
                   <Typography color="secondary" className={classes.errorMessage}>
-                    Há algo errado com seu usuário ou senha :(
+                    Há algo de errado com seu usuário ou senha :(
                   </Typography>
                 </Paper>
         </Fade>
@@ -128,7 +128,7 @@ function Login(props) {
                   size="large"
                   className={classes.forgetButton}
                 >
-                  Forget Password
+                  Esqueci minha senha
                 </Button>
               </div>
             </React.Fragment>
@@ -136,14 +136,14 @@ function Login(props) {
           {activeTabId === 1 && (
             <React.Fragment>
               <Typography variant="h1" className={classes.greeting}>
-                Welcome!
+                Bem-vindo!
               </Typography>
               <Typography variant="h2" className={classes.subGreeting}>
-                Create your account
+                Crie sua conta
               </Typography>
               <Fade in={error}>
                 <Typography color="secondary" className={classes.errorMessage}>
-                  Something is wrong with your login or password :(
+                  Há algo de errado com seu usuário ou senha :(
                 </Typography>
               </Fade>
               <TextField
@@ -217,7 +217,7 @@ function Login(props) {
                     fullWidth
                     className={classes.createAccountButton}
                   >
-                    Create your account
+                    Crie sua conta
                   </Button>
                 )}
               </div>
