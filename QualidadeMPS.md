@@ -25,7 +25,7 @@ __Legenda dos Status__:
 
 ## Nível G - Parcialmente Gerenciado
 
-### Gerência de Requisitos – GRE
+### Gerência de Requisitos – GRE (17/19)
 
 <table>
   <tr>
@@ -150,7 +150,7 @@ __Legenda dos Status__:
   </tr>
 </table>
 
-### Gerência de Requisitos – GRE
+### Gerência de Requisitos – GRE (2/5)
 
 <table>
   <tr>
@@ -194,7 +194,7 @@ __Legenda dos Status__:
 
 ## Nível F - Processo Gerenciado
 
-### Aquisição – AQU
+### Aquisição – AQU (6/8)
 
 <table>
   <tr>
@@ -253,7 +253,7 @@ __Legenda dos Status__:
   </tr>
 </table>
 
-### Gerência de Configuração – GCO
+### Gerência de Configuração – GCO (6/7)
 
 <table>
   <tr>
@@ -307,7 +307,7 @@ __Legenda dos Status__:
   </tr>
 </table>
 
-### Garantia da Qualidade – GQA
+### Garantia da Qualidade – GQA (3/4)
 
 <table>
   <tr>
@@ -342,7 +342,7 @@ __Legenda dos Status__:
   </tr>
 </table>
 
-### Gerência de Portfólio de Projetos - GPP
+### Gerência de Portfólio de Projetos - GPP (0/8)
 
 __Não foi realizado gerenciamento de portfólio por haver só um projeto.__
 
@@ -403,7 +403,7 @@ __Não foi realizado gerenciamento de portfólio por haver só um projeto.__
   </tr>
 </table>
 
-### Medição - MED
+### Medição - MED (7/7)
 
 <table>
   <tr>
