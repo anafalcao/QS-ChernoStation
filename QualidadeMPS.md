@@ -285,7 +285,7 @@ __Legenda dos Status__:
     <td><b>GCO 4</b></td>
     <td>A  situação  dos  itens  de  configuração  e  das baselines é  registrada  ao longo do tempo e disponibilizada</td>
     <td>✔</td>
-    <td>Através do Git e do Projeto no github</td>
+    <td>Através do Git e do Projeto no GitHub</td>
   </tr>
   <tr>
     <td><b>GCO 5</b></td>
@@ -303,7 +303,7 @@ __Legenda dos Status__:
     <td><b>GCO 7</b></td>
     <td>Auditorias    de    configuração    são    realizadas    objetivamente    para assegurar   que   as baselines e os   itens   de   configuração   estejam íntegros, completos e consistentes</td>
     <td>❌</td>
-    <td>Não realizamos auditorias</td>
+    <td>Não foram realizadas auditorias</td>
   </tr>
 </table>
 
