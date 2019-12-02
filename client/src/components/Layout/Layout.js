@@ -16,6 +16,7 @@ import Sidebar from "../Sidebar";
 
 // pages
 import Dashboard from "../../pages/dashboard";
+import UserManagement from "../../pages/user_management";
 import Typography from "../../pages/typography";
 import Notifications from "../../pages/notifications";
 import Icons from "../../pages/icons";
@@ -42,6 +43,7 @@ function Layout(props) {
             <div className={classes.fakeToolbar} />
             <Switch>
               <Route path="/app/dashboard" component={Dashboard} />
+              <Route path="/app/user_management" component={UserManagement} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/notifications" component={Notifications} />
               <Route

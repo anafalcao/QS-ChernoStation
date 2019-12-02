@@ -22,4 +22,16 @@ export default class User {
         });
     }
 
+    static GET_USERS = gql`
+        query MyQuery {
+            allUsers {
+                nodes {
+                    id
+                    name
+                    email
+                    username
+                }
+            }
+        }`;
+
 }

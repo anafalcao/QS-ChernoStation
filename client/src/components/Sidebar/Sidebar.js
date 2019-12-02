@@ -24,17 +24,7 @@ import {
 
 const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
-  {
-    id: 1,
-    label: "Controle de Usuário",
-    link: "",
-    icon: <UserIcon />,
-  },
-  // { id: 5, type: "divider" },
-  // { id: 6, type: "title", label: "AJUDA" },
-  // { id: 7, label: "Documentação", link: "", icon: <LibraryIcon /> },
-  // { id: 8, label: "Suporte", link: "", icon: <SupportIcon /> },
-  // { id: 9, label: "FAQ", link: "", icon: <FAQIcon /> },
+  { id: 1, label: "Controle de Usuário", link: "/app/user_management", icon: <UserIcon /> },
 ];
 
 function Sidebar({ location }) {
