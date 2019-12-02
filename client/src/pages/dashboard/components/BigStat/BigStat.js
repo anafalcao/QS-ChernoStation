@@ -19,9 +19,7 @@ export default function BigStat(props) {
 
   var { data, loading, error } = useQuery(Measurements.GET_MEASUREMENTS, 
     {variables: {type_id: measurement_type_id}});
-
-  console.log(name);
-  console.log(data, loading, error);
+  
   var averages;
   var render_widget;
 

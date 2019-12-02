@@ -22,4 +22,20 @@ export default class Measurements {
         }
       }
     }`;
+  
+  static GET_LAST_MEASUREMENTS_BY_TYPE = gql`
+    query MyQuery($last_n: Int!) {
+      allMeasurementTypes {
+        nodes {
+          measurementsByMeasurementTypeId(last: $last_n) {
+            nodes {
+              value
+              datetime
+            }
+          }
+          id
+          name
+        }
+      }
+    }`;
 }

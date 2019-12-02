@@ -90,9 +90,7 @@ export default function Dashboard(props) {
 
   if(measurement_types){
     bigStatGrid = measurement_types.allMeasurementTypes.nodes.map(measurement_type => {
-      console.log(colors);
       var color = colors[measurement_type.id-1];
-      console.log(color);
       return (
       <Grid item md={4} sm={6} xs={12} key={measurement_type.id}>
         <BigStat measurement_type_id={measurement_type.id} name={measurement_type.name} color={color}/>

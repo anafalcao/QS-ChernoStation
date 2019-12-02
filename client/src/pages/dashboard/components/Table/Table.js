@@ -6,33 +6,52 @@ import {
   TableBody,
   TableCell,
 } from "@material-ui/core";
+import { useQuery } from "@apollo/react-hooks";
+import Measurements from "../../../../models/Measurements";
 
-export default function TableComponent({ data }) {
-  var keys = Object.keys(data[0]).map(i => i.toUpperCase());
-  keys.shift(); // delete "id" key
+export default function TableComponent() {
+  const { data, loading } = useQuery(Measurements.GET_LAST_MEASUREMENTS_BY_TYPE,
+    {variables: {last_n: 5}});
 
-  return (
-    <Table className="mb-0">
-      <TableHead>
-        <TableRow>
-          {keys.map(key => (
-            <TableCell key={key}>{key}</TableCell>
-          ))}
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {data.map(({ id, medidor, xenonio, uranio, radioativade, temperatura, pressao, energia}) => (
-          <TableRow key={id}>
-            <TableCell className="pl-3 fw-normal">{medidor}</TableCell>
-            <TableCell>{xenonio}</TableCell>
-            <TableCell>{uranio}</TableCell>
-            <TableCell>{radioativade}</TableCell>
-            <TableCell>{temperatura}</TableCell>
-            <TableCell>{pressao}</TableCell>
-            <TableCell>{energia}</TableCell>
+  var render_table;
+
+  if(loading) {
+    render_table = <p>Loading...</p>
+  } else {
+    var measurement_types = [];
+    var measurement_rows = {};
+
+    data.allMeasurementTypes.nodes.forEach(function(measurement_type){
+      measurement_types.push({id: measurement_type.id, name: measurement_type.name});
+
+      measurement_type.measurementsByMeasurementTypeId.nodes.forEach(function(measurement, index){
+        if(!(index in measurement_rows)){
+          measurement_rows[index] = {};
+        }
+        measurement_rows[index][measurement_type.id] = measurement.value;
+      })
+    })
+
+    render_table = 
+      <Table className="mb-0">
+        <TableHead>
+          <TableRow>
+            {measurement_types.map(measurement_type => (
+              <TableCell key={measurement_type.id}>{measurement_type.name}</TableCell>
+            ))}
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
-  );
+        </TableHead>
+        <TableBody>
+          {Object.values(measurement_rows).map((measurements_by_type, index) => (
+            <TableRow key={index}>
+              {measurement_types.map(measurement_type => (
+                <TableCell key={measurement_type.id}>{measurements_by_type[measurement_type.id]}</TableCell>
+              ))}
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>;
+  }
+
+  return render_table;
 }
