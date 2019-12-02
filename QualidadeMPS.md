@@ -207,48 +207,48 @@ __Legenda dos Status__:
     <td><b>AQU 1</b></td>
     <td>As necessidades de aquisição, as metas, os critérios de aceitação do produto, os tipos e a estratégia de aquisição são definidos</td>
     <td>✔</td>
-    <td>Foram estipulados de início todos os recursos necessários para o projeto, e não foi necessária nenhuma aquisição</td>
+    <td>Foram estipulados de início todos os recursos necessários para o projeto, e foi necessária a aquisição de um template em React de código livre</td>
   </tr>
   <tr>
     <td><b>AQU 2</b></td>
     <td>Os  critérios  de  seleção  do  fornecedor  são  estabelecidos  e  usados para avaliar os potenciais fornecedores</td>
-    <td>🔘</td>
-    <td>Não possuímos fornecedores</td>
+    <td>⚠</td>
+    <td>Não foram registrados os critérios específicos para seleção de fornecedores, isso foi feito de forma intuitiva</td>
   </tr>
   <tr>
     <td><b>AQU 3</b></td>
     <td>O  fornecedor  é  selecionado  com  base  na  avaliação  das  propostas  e dos critérios estabelecidos</td>
-    <td>🔘</td>
+    <td>✔</td>
     <td>-</td>
   </tr>
   <tr>
     <td><b>AQU 4</b></td>
     <td>Um acordo que expresse claramente as expectativas, responsabilidades   e   obrigações   de   ambas   as   partes   (cliente   e fornecedor) é estabelecido e negociado entre elas</td>
-    <td>🔘</td>
-    <td>Não estabelecemos relação com fornecedores</td>
+    <td>❌</td>
+    <td>Não foi feito acordo com o fornecedor</td>
   </tr>
   <tr>
     <td><b>AQU 5</b></td>
     <td>Um  produto  que  satisfaça  a  necessidade  expressa  pelo  cliente  é adquirido baseado na análise dos potenciais candidatos</td>
-    <td>🔘</td>
+    <td>✔</td>
     <td>-</td>
   </tr>
   <tr>
     <td><b>AQU 6</b></td>
     <td>A  aquisição  é  monitorada  de  forma  que  as  condições  especificadas sejam  atendidas,  tais  como  custo,  cronograma  e  qualidade,  gerando ações corretivas quando necessário</td>
-    <td>🔘</td>
+    <td>✔</td>
     <td>-</td>
   </tr>
   <tr>
     <td><b>AQU 7</b></td>
     <td>O  produto  é  entregue  e  avaliado  em  relação  ao  acordado  e  os resultados são documentados</td>
-    <td>🔘</td>
+    <td>✔</td>
     <td>-</td>
   </tr>
   <tr>
     <td><b>AQU 8</b></td>
     <td>O produto adquirido é incorporado ao projeto, caso pertinente</td>
-    <td>🔘</td>
+    <td>✔</td>
     <td>-</td>
   </tr>
 </table>
@@ -267,7 +267,7 @@ __Legenda dos Status__:
     <td><b>GCO 1</b></td>
     <td>Um Sistema de Gerência de Configuração é estabelecido e mantido</td>
     <td>✔</td>
-    <td>Todo sistema está em um projeto <i>Cargo</i> desde o início</td>
+    <td>Foi usado o gerenciador de pacotes Yarn para gerenciamento e inicialização tanto do front-end quanto do back-end</td>
   </tr>
   <tr>
     <td><b>GCO 2</b></td>
@@ -279,13 +279,13 @@ __Legenda dos Status__:
     <td><b>GCO 3</b></td>
     <td>Os  itens  de  configuração sujeitos  a  um  controle  formal  são  colocados sob baseline</td>
     <td>✔</td>
-    <td>O readme do projeto e outras documentações</td>
+    <td>O ReadMe do projeto e outras documentações</td>
   </tr>
   <tr>
     <td><b>GCO 4</b></td>
     <td>A  situação  dos  itens  de  configuração  e  das baselines é  registrada  ao longo do tempo e disponibilizada</td>
     <td>✔</td>
-    <td>GIT e Projeto no github</td>
+    <td>Através do Git e do Projeto no github</td>
   </tr>
   <tr>
     <td><b>GCO 5</b></td>
@@ -295,13 +295,13 @@ __Legenda dos Status__:
   </tr>
   <tr>
     <td><b>GCO 6</b></td>
-    <td>O armazenamento, o manuseio e a liberação de itens de configuração e baselinessão controlados</td>
+    <td>O armazenamento, o manuseio e a liberação de itens de configuração e baselines são controlados</td>
     <td>✔</td>
     <td>-</td>
   </tr>
   <tr>
     <td><b>GCO 7</b></td>
-    <td>Auditorias    de    configuração    são    realizadas    objetivamente    para assegurar   que   as baselinese   os   itens   de   configuração   estejam íntegros, completos e consistentes</td>
+    <td>Auditorias    de    configuração    são    realizadas    objetivamente    para assegurar   que   as baselines e os   itens   de   configuração   estejam íntegros, completos e consistentes</td>
     <td>❌</td>
     <td>Não realizamos auditorias</td>
   </tr>
