@@ -7,15 +7,6 @@ import {
   TableCell,
 } from "@material-ui/core";
 
-// components
-import { Button } from "../../../../components/Wrappers";
-
-const states = {
-  sent: "success",
-  pending: "warning",
-  declined: "secondary",
-};
-
 export default function TableComponent({ data }) {
   var keys = Object.keys(data[0]).map(i => i.toUpperCase());
   keys.shift(); // delete "id" key

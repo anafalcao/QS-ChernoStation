@@ -3,11 +3,9 @@ import { useQuery } from '@apollo/react-hooks';
 
 import { Grid, Select, MenuItem, Input } from "@material-ui/core";
 import { ArrowForward as ArrowForwardIcon } from "@material-ui/icons";
-import { useTheme } from "@material-ui/styles";
 import { BarChart, Bar } from "recharts";
 import classnames from "classnames";
 import Measurements from "../../../../models/Measurements";
-import Notifications from "../../../../models/Notifications";
 
 // styles
 import useStyles from "./styles";
@@ -28,12 +26,9 @@ export default function BigStat(props) {
   var render_widget;
 
   var classes = useStyles();
-  var theme = useTheme();
 
   // local
   var [value, setValue] = useState("daily");
-
-  
 
   if(loading){
     render_widget = <p>Loading...</p>
@@ -119,8 +114,6 @@ export default function BigStat(props) {
   return (render_widget);
 }
 
-// #######################################################################
-
 function computeAverages(measurements) {
   var results = {
     data : {monthly: [], weekly: [], daily: []},
@@ -172,8 +165,6 @@ function computeAverages(measurements) {
     results.max[time_frame] = results.max[time_frame].toFixed(2);
     results.min[time_frame] = results.min[time_frame].toFixed(2);
   })
-  console.log(results);
+
   return results;
 }
-
-// ##########################

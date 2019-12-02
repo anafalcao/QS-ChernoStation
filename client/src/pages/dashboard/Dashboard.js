@@ -1,13 +1,11 @@
 import React from "react";
 import { useQuery } from '@apollo/react-hooks';
-import NotificationBlock from '../../components/Notification/NotificationBlock';
 
 import {
   Grid,
   Paper,
   Typography,
 } from "@material-ui/core";
-import { useTheme } from "@material-ui/styles";
 
 // styles
 import useStyles from "./styles";
