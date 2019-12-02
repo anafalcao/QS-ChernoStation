@@ -21,7 +21,6 @@ import useStyles from "./styles";
 
 // components
 import SidebarLink from "./components/SidebarLink/SidebarLink";
-import Dot from "./components/Dot";
 
 // context
 import {
@@ -38,49 +37,11 @@ const structure = [
     link: "",
     icon: <UserIcon />,
   },
-  // { id: 2, label: "Tables", link: "/app/tables", icon: <TableIcon /> },
-  // {
-  //   id: 3,
-  //   label: "Notifications",
-  //   link: "/app/notifications",
-  //   icon: <NotificationsIcon />,
-  // },
-  // {
-  //   id: 4,
-  //   label: "UI Elements",
-  //   link: "/app/ui",
-  //   icon: <UIElementsIcon />,
-  //   children: [
-  //     { label: "Icons", link: "/app/ui/icons" },
-  //     { label: "Charts", link: "/app/ui/charts" },
-  //     { label: "Maps", link: "/app/ui/maps" },
-  //   ],
-  // },
-  { id: 5, type: "divider" },
-  { id: 6, type: "title", label: "AJUDA" },
-  { id: 7, label: "Documentação", link: "", icon: <LibraryIcon /> },
-  { id: 8, label: "Suporte", link: "", icon: <SupportIcon /> },
-  { id: 9, label: "FAQ", link: "", icon: <FAQIcon /> },
-  // { id: 10, type: "divider" },
-  // { id: 11, type: "title", label: "PROJECTS" },
-  // {
-  //   id: 12,
-  //   label: "My recent",
-  //   link: "",
-  //   icon: <Dot size="large" color="warning" />,
-  // },
-  // {
-  //   id: 13,
-  //   label: "Starred",
-  //   link: "",
-  //   icon: <Dot size="large" color="primary" />,
-  // },
-  // {
-  //   id: 14,
-  //   label: "Background",
-  //   link: "",
-  //   icon: <Dot size="large" color="secondary" />,
-  // },
+  // { id: 5, type: "divider" },
+  // { id: 6, type: "title", label: "AJUDA" },
+  // { id: 7, label: "Documentação", link: "", icon: <LibraryIcon /> },
+  // { id: 8, label: "Suporte", link: "", icon: <SupportIcon /> },
+  // { id: 9, label: "FAQ", link: "", icon: <FAQIcon /> },
 ];
 
 function Sidebar({ location }) {
